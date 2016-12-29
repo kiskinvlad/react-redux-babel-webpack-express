@@ -3,7 +3,7 @@ import Router from 'react-router';
 import { Link, Route } from 'react-router';
 import App from './components/App';
 import 'bootstrap/dist/css/bootstrap.css';
-
+import 'font-awesome/css/font-awesome.css';
 let AppWrapper = React.createClass({
     render() {
         return (
