@@ -1,33 +1,26 @@
 var webpack = require('webpack');
+var CompressionPlugin = require('compression-webpack-plugin');
 
 var path = require('path');
-var HtmlwebpackPlugin = require('html-webpack-plugin');
 
 var ROOT_PATH = path.resolve(__dirname);
 
 module.exports = {
     devtool: 'source-map',
     entry: [
-        'webpack-hot-middleware/client?reload=true',
         path.resolve(ROOT_PATH, 'app/src/index'),
     ],
     module: {
-        preLoaders: [
-            {
-                test: /\.jsx?$/,
-                loaders: ['eslint'],
-                include: path.resolve(ROOT_PATH, 'app')
-            }
-        ],
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react']
+            loader: 'babel',
+            presets: ['react', 'es2015']
         },
             {
-                test: /\.css$/,
-                loader:'style!css!'
-            },
+            test: /\.css$/,
+            loader:'style!css!'
+        },
             {
                 test: /\.scss$/,
                 loaders: ['style','css','sass']
@@ -55,28 +48,31 @@ module.exports = {
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
                 loader: 'url?limit=10000&mimetype=image/svg+xml'
-            }
-        ]
+            }]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx'],
     },
     output: {
-        path: path.resolve(ROOT_PATH, 'app/build'),
+        path: path.resolve(ROOT_PATH, 'app/dist'),
         publicPath: '/',
         filename: 'bundle.js'
     },
-    devServer: {
-        contentBase: path.resolve(ROOT_PATH, 'app/ build '),
-        historyApiFallback: true,
-        hot: true,
-        inline: true,
-        progress: true
-    },
     plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new HtmlwebpackPlugin({
-            title: 'Listlogs'
+        new webpack.DefinePlugin({ //<--key to reduce React's size
+            'process.env': {
+                'NODE_ENV': JSON.stringify('production')
+            }
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.UglifyJsPlugin(),
+        new webpack.optimize.AggressiveMergingPlugin(),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
         })
     ]
 };
