@@ -74,7 +74,7 @@ What need(using Heroku Git):
 
 ## License
 
-[MIT](license) &copy; [Kiskin Vladislav][author]
+[MIT](LICENSE.md) &copy; [Kiskin Vladislav][author]
 
 
 [author]: https://github.com/kiskinvlad
