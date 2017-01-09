@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import FontAwesome from 'react-fontawesome';
 
 export default class HelloComponent extends Component {
     constructor(props) {
@@ -6,7 +7,9 @@ export default class HelloComponent extends Component {
     }
     render() {
         this.name = this.props.name;
-        return <div>This is component. His name is {this.name}!!!</div>;
+        require('./HelloComponent.scss');
+
+        return <div>This is component. His name is <span className='red'><FontAwesome name='github'/>{this.name}</span>!!!</div>;
     }
 }
 
