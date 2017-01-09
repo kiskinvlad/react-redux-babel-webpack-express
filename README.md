@@ -71,3 +71,10 @@ What need(using Heroku Git):
 4. Push to heroku master
 5. Open heroku dashboard -> 'YourApp' -> open App
 6. Enjoi it
+
+## License
+
+[MIT](license) &copy; [Kiskin Vladislav][author]
+
+
+[author]: https://github.com/kiskinvlad
