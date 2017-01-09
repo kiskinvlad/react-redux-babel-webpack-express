@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "react-redux-babel-webpack-express seed",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kiskinvlad/react-redux-babel-webpack-express.git"
+  },
   "scripts": {
     "webpack-watch": "webpack -w",
     "express-server": "nodemon ./server",
