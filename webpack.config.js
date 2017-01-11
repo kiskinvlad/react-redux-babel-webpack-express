@@ -1,4 +1,5 @@
 var webpack = require('webpack');
+var HappyPack = require('happypack');
 
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -16,45 +17,57 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loaders: ['eslint'],
-                include: path.resolve(ROOT_PATH, 'app')
+                include: path.resolve(ROOT_PATH, 'app/src')
             }
         ],
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react']
+            loaders: [ 'happypack/loader?id=jsx' ],
+            include: path.resolve(ROOT_PATH, 'app/src')
         },
             {
                 test: /\.css$/,
-                loader:'style!css!'
+                loader:'style!css!',
+                include: [
+                    path.resolve(ROOT_PATH, 'app/styles'),
+                    path.resolve(ROOT_PATH, 'app/src'),
+                    path.resolve(ROOT_PATH, 'app/src'),
+                    path.resolve(ROOT_PATH, 'node_modules/font-awesome'),
+                    path.resolve(ROOT_PATH, 'node_modules/bootstrap')
+                ],
             },
             {
                 test: /\.scss$/,
-                loaders: ['style','css','sass']
+                loaders: [ 'happypack/loader?id=sass' ],
+                include: [
+                    path.resolve(ROOT_PATH, 'app/styles'),
+                    path.resolve(ROOT_PATH, 'app/src')
+                ],
             },
             {
                 test: /\.png$/,
-                loader: "url-loader?limit=100000"
+                loader: "url-loader?limit=100000",
             },
             {
                 test: /\.jpg$/,
-                loader: "file-loader"
+                loader: "file-loader",
             },
             {
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/font-woff'
+                loader: 'url?limit=10000&mimetype=application/font-woff',
             },
             {
                 test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=application/octet-stream'
+                loader: 'url?limit=10000&mimetype=application/octet-stream',
             },
             {
                 test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'file'
+                loader: 'file',
             },
             {
                 test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-                loader: 'url?limit=10000&mimetype=image/svg+xml'
+                loader: 'url?limit=10000&mimetype=image/svg+xml',
             }
         ]
     },
@@ -74,6 +87,17 @@ module.exports = {
         progress: true
     },
     plugins: [
+        new HappyPack({
+            id: 'sass',
+            threads: 2,
+            loaders: [ 'style','css','sass' ],
+            // customize as needed, see Configuration below
+        }),
+        new HappyPack({
+            id: 'jsx',
+            threads: 4,
+            loaders: [ 'react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react' ]
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlwebpackPlugin({
             title: 'Listlogs'

@@ -1,0 +1,15 @@
+/* REACT HOT LOADER */ if (module.hot) { (function () { var ReactHotAPI = require("C:\\Users\\kiskin-laptop\\WebstormProjects\\react-redux-babel-webpack-express\\node_modules\\react-hot-api\\modules\\index.js"), RootInstanceProvider = require("C:\\Users\\kiskin-laptop\\WebstormProjects\\react-redux-babel-webpack-express\\node_modules\\react-hot-loader\\RootInstanceProvider.js"), ReactMount = require("react-dom/lib/ReactMount"), React = require("react"); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } try { (function () {
+
+'use strict';Object.defineProperty(exports,"__esModule",{value:true});
+var TEST_URL=exports.TEST_URL='http://localhost:9876';
+
+
+var OFFSET=exports.OFFSET='offset';
+var LIMIT=exports.LIMIT='limit';
+
+
+var ACTION_REQUEST=exports.ACTION_REQUEST='_REQUEST';
+var ACTION_SUCCESS=exports.ACTION_SUCCESS='_SUCCESS';
+var ACTION_FAILURE=exports.ACTION_FAILURE='_FAILURE';
+
+/* REACT HOT LOADER */ }).call(this); } finally { if (module.hot) { (function () { var foundReactClasses = module.hot.data && module.hot.data.foundReactClasses || false; if (module.exports && module.makeHot) { var makeExportsHot = require("C:\\Users\\kiskin-laptop\\WebstormProjects\\react-redux-babel-webpack-express\\node_modules\\react-hot-loader\\makeExportsHot.js"); if (makeExportsHot(module, require("react"))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot apply hot update to " + "index.jsx" + ": " + err.message); } }); } } module.hot.dispose(function (data) { data.makeHot = module.makeHot; data.foundReactClasses = foundReactClasses; }); })(); } }
