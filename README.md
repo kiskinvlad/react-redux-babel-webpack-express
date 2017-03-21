@@ -41,6 +41,7 @@ npm install
 
 ```bash
 npm run dev
+then open [localhost:3000] http://localhost:3000
 ```
 
 ## Build prod app 
@@ -56,7 +57,8 @@ After build
 ```bash
 npm start
 ```
-
+## Troubleshooting
+If you use intellij IDE there may be problems with hot reloading. Solved: open in Intellij -> Settings | Appearance & Behavior | System Settings | Use "safe write" (save changes to temporary file first) off.
 ## Project structure 
 
 ![alt tag](https://github.com/kiskinvlad/react-redux-babel-webpack-express/blob/master/1.png?raw=true|alt=octocat) 
