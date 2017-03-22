@@ -1,5 +1,4 @@
 var webpack = require('webpack');
-var HappyPack = require('happypack');
 
 var path = require('path');
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -23,8 +22,7 @@ module.exports = {
         loaders: [{
             test: /\.jsx?$/,
             exclude: /node_modules/,
-            loaders: [ 'happypack/loader?id=jsx' ],
-            include: path.resolve(ROOT_PATH, 'app/src')
+            loaders: ['react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react']    
         },
             {
                 test: /\.css$/,
@@ -39,11 +37,7 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loaders: [ 'happypack/loader?id=sass' ],
-                include: [
-                    path.resolve(ROOT_PATH, 'app/styles'),
-                    path.resolve(ROOT_PATH, 'app/src')
-                ],
+                loaders: ['style','css','sass']       
             },
             {
                 test: /\.png$/,
@@ -87,17 +81,6 @@ module.exports = {
         progress: true
     },
     plugins: [
-        new HappyPack({
-            id: 'sass',
-            threads: 2,
-            loaders: [ 'style','css','sass' ],
-            // customize as needed, see Configuration below
-        }),
-        new HappyPack({
-            id: 'jsx',
-            threads: 4,
-            loaders: [ 'react-hot', 'babel?presets[]=es2015,presets[]=stage-2,presets[]=react' ]
-        }),
         new webpack.HotModuleReplacementPlugin(),
         new HtmlwebpackPlugin({
             title: 'Listlogs'
