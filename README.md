@@ -1,9 +1,6 @@
 # react-redux boilerplate seed
 
 ---
-# Demo 
-
-Look demo [here](https://react-redux-webpack-seed.herokuapp.com);
 
 ## Tech stack
 
